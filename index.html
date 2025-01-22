@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie de Photos Accessible</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 200px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .gallery img:focus {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ma Galerie de Photos</h1>
+    <div class="gallery">
+        <img src="image1.jpg" alt="Description de l'image 1">
+        <img src="image2.jpg" alt="Description de l'image 2">
+        <img src="image3.jpg" alt="Description de l'image 3">
+        <img src="image4.jpg" alt="Description de l'image 4">
+        <img src="image5.jpg" alt="Description de l'image 5">
+        <img src="image6.jpg" alt="Description de l'image 6">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const images = document.querySelectorAll(".gallery img");
+
+            images.forEach((image) => {
+                image.addEventListener("focus", () => {
+                    image.style.border = "2px solid blue";
+                });
+
+                image.addEventListener("blur", () => {
+                    image.style.border = "2px solid #ccc";
+                });
+
+                image.addEventListener("mouseover", () => {
+                    image.style.opacity = "0.8";
+                });
+
+                image.addEventListener("mouseleave", () => {
+                    image.style.opacity = "1";
+                });
+            });
+
+
+            images.forEach((image, index) => {
+                image.setAttribute("tabindex", index + 1);
+                console.log(`Tabindex ajouté à l'image ${index + 1}`);
+            });
+        });
+
+        window.onload = () => {
+            console.log("Page chargée avec succès !");
+        };
+    </script>
+</body>
+</html>
